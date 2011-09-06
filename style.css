@@ -1,0 +1,29 @@
+div.popup_overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=90);
+    cursor: pointer;
+}
+
+div.popup {
+    border: 1px solid gray;
+    text-align: center;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-box-shadow: gray 0px 2px 20px;
+    -moz-box-shadow: gray 0px 2px 20px;
+    box-shadow: gray 0px 2px 20px;
+    background: #fff;
+    behavior: url(/static/PIE.htc);
+    position: absolute;
+    z-index: 101;
+}
