@@ -1,0 +1,14 @@
+Use:
+<head>
+    <link type="text/css" rel="stylesheet" media="all" href="FIX_THE_PATH/css.css" />
+    <script type="text/javascript" src="FIX_THE_PATH/mootools-core-1.3.2-full-compat.js"></script>
+    <script type="text/javascript" src="FIX_THE_PATH/mootools-simple-popup.js"></script>
+    <script type="text/javascript">
+        $(window).addEvent('domready', function() {
+            var popup_instance = new Popup({see_options_in_js});
+            popup_instance.show();
+        });
+    </script>
+</head>
+
+PLEASE SEE SOURCE CODE
