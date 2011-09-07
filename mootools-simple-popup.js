@@ -14,18 +14,15 @@ var Popup = new Class({
         'height': null,
         'default_width': 0.5,
         'default_height': 0.8,
-        'href': null
     },
 
-    initialize: function(href) {
-                    this.setOptions({'href': href});
+    initialize: function(options) {
+                    this.setOptions(options);
                     this.overlay = new Element('div', {'class': 'popup_overlay', 'style': 'display: none;'});
                     this.popup = new Element('div', {'class': 'popup', 'style': 'display: none;'});
                     $(window).addEvent('resize', this.set_popup_dimensions.bind(this));
                     this.overlay.addEvent('click', this.hide.bind(this));
                     $(document.body).adopt(this.overlay, this.popup);
-                    this.method = this.options.href.get('href');
-                    this.options.href.addEvent('click', this.show.bind(this));
                 },
 
     set_popup_dimensions: function() {
@@ -94,16 +91,6 @@ var Popup = new Class({
                         }
                     }, this);
                     this.runInlineScripts();
-                    var form = this.popup.getElement('form.jsonrpc');
-                    console.log(form.name);
-                    form.addEvent('submit', function(e,f) {
-                        $(form).set('jsonrpc', {
-                            name: form.name,
-                            url: '/json/',
-                            onSuccess: function(res) { alert('res'); }
-                        }).jsonrpc();
-                        return false;
-                    });
                 },
 
     handleCssLoad: function(e) {
