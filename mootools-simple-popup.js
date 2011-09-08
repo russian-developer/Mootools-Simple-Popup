@@ -20,6 +20,9 @@ var Popup = new Class({
                     this.setOptions(options);
                     this.overlay = new Element('div', {'class': 'popup_overlay', 'style': 'display: none;'});
                     this.popup = new Element('div', {'class': 'popup', 'style': 'display: none;'});
+                    this.popup.addEvent('jsonrpc2_fill_popup', this.jsonrpc2_fill_popup.bind(this));
+                    this.popup.addEvent('destroy', this.destroy.bind(this));
+                    this.popup.addEvent('hide', this.hide.bind(this));
                     $(window).addEvent('resize', this.set_popup_dimensions.bind(this));
                     this.overlay.addEvent('click', this.hide.bind(this));
                     $(document.body).adopt(this.overlay, this.popup);
@@ -27,14 +30,17 @@ var Popup = new Class({
 
     set_popup_dimensions: function() {
                     var window_size = $(window).getSize();
-                    var popup_width = (this.options.width) ? this.options.width : window_size.x * this.options.default_width;
-                    var popup_height = (this.options.height) ? this.options.height : window_size.y * this.options.default_height;
+                    var popup_width = (this.options.width) ? this.options.width.toInt() : window_size.x * this.options.default_width;
+                    var popup_height = (this.options.height) ? this.options.height.toInt() : null;
                     this.popup.setStyles({
                         'width': popup_width,
-                        'height': popup_height,
-                        'left': (window_size.x - popup_width) / 2,
-                        'top': (window_size.y - popup_height) / 2
+                        'left': (window_size.x - popup_width) / 2
+                       /* ,
+                        'top': (window_size.y - popup_height) / 2*/
                     });
+                    if (popup_height) {
+                        this.popup.setStyle('height', popup_height);
+                    }
             },
 
     fill_popup: function(html) {
